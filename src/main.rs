@@ -52,6 +52,12 @@ fn stupidspeak(ctx: &mut Context, msg: &Message) -> CommandResult {
     Ok(())
 }
 
+#[command]
+fn reverse(ctx: &mut Context, msg: &Message) -> CommandResult {
+    msg.reply(ctx, &msg.content.chars().rev().collect::<String>())?;
+
+    Ok(())
+}
 
 // fn randomNumber(start: int, end: int) -> int {
 //     return rng.gen_range(0, 10));
