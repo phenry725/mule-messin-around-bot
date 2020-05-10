@@ -2,11 +2,15 @@
 //
 // use rand::Rng;
 use serenity::client::Client;
-use serenity::framework::standard::{
-    macros::{command, group},
-    CommandResult, StandardFramework,
+
+use serenity::{
+    framework::{
+        standard::macros::{command, group},
+        standard::CommandResult,
+        StandardFramework,
+    },
+    model::{channel::Message, gateway::Ready},
 };
-use serenity::model::channel::Message;
 use serenity::prelude::{Context, EventHandler};
 
 #[group]
@@ -17,7 +21,11 @@ use std::env;
 
 struct Handler;
 
-impl EventHandler for Handler {}
+impl EventHandler for Handler {
+    fn ready(&self, _: Context, ready: Ready) {
+        println!("{} is connected!", ready.user.name);
+    }
+}
 
 fn main() {
     // Login with a bot token from the environment
