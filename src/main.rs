@@ -10,7 +10,7 @@ use serenity::model::channel::Message;
 use serenity::prelude::{Context, EventHandler};
 
 #[group]
-#[commands(ping, stupidspeak)]
+#[commands(ping, stupidspeak, reverse)]
 struct General;
 
 use std::env;
@@ -25,7 +25,7 @@ fn main() {
         .expect("Error creating client");
     client.with_framework(
         StandardFramework::new()
-            .configure(|c| c.prefix("!")) // set the bot's prefix to "!"
+            .configure(|c| c.prefix("!")) // set the bots prefix to "!"
             .before(|_ctx, message, command_name| {
                 println!(
                     "Got command '{}' by user '{}'",
